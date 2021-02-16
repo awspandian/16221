@@ -5,10 +5,15 @@ git commit
 git push
 
 pull
-
 thi is local commit
+
 
 git pull
 this is from hub
 
 checking stash demo apply
+
+git pull
+this is from hub
+
+this nis second line from hub
