@@ -1,5 +1,8 @@
 git init
 git add
+git commit this is for sample
 git commit
 git push
-git pull
+pull
+
+thi is local commit
