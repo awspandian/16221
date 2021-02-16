@@ -3,11 +3,9 @@ git add
 git commit this is for sample
 git commit
 git push
-<<<<<<< HEAD
 pull
-
 thi is local commit
-=======
 git pull
 this is from hub
->>>>>>> df6375c2ed20fffc6e2e250088d3614e159540d3
+
+this nis second line from hub
