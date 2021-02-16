@@ -17,3 +17,6 @@ git pull
 this is from hub
 
 this nis second line from hub
+
+
+git fetch +git merge = git pull
