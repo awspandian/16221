@@ -22,3 +22,12 @@ this nis second line from hub
 git fetch +git merge = git pull
 
 git pull = fetch + merge
+
+
+git add
+
+git push
+git fetch
+
+Thuppakki
+
