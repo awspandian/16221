@@ -29,3 +29,5 @@ git add
 git push
 git fetch
 
+git cherry pick
+
