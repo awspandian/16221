@@ -25,3 +25,5 @@ git pull = fetch + merge
 
 
 git add
+
+git push
