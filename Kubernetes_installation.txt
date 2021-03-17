@@ -1,0 +1,96 @@
+Master
+worker 1
+worker 2
+
+apt update 
+apt install docker.io -y 
+systemctl enable docker 
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+sudo apt-get update
+
+sudo apt-get install -y kubelet kubeadm kubectl
+
+sudo apt-mark hold kubelet kubeadm kubectl
+
+Create Master Server - On master machine run the below command
+
+1.  kubeadm init --apiserver-advertise-address=<<Master ServerIP>> --pod-network-cidr=192.168.0.0/16
+
+# kubeadm init --apiserver-advertise-address=172.31.35.199 --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NUMCPU --ignore-preflight-errors=Mem
+
+
+2.  mkdir -p $HOME/.kube
+
+3.  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+4.  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Calico yaml file is to be applied
+
+5.  Run the join command on each of the worker node which you want to join in the cluser.// run in worker nodes
+
+6.  kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml // apply this in master node
+
+7. kubectl get nodes // Run kubectl get nodes  command on master node
+
+kubectl version
+
+kubeadm token create --print-join-command # if forgot to get the join toke use this command to get back the same
+
+kubectl get pods -n kube-system
+
+Get a list of Pods in the kube-system namespace:
+
+kubectl get pods -n kube-system
+
+Get the same list of Pods using the raw Kubernetes API:
+
+kubectl get --raw /api/v1/namespaces/kube-system/pods
+
+Get information on a single Pod using the raw API:
+
+kubectl get --raw /api/v1/namespaces/kube-system/pods/etcd-k8s-control
+
+#pod have a single or multiple container but dont have a duplicate continer in a pod
+
+host machine ip 
+pod ip isthe same ip of the container 
+containers in side the pod will communicate in localhost
+pod network where container are running in side the pod
+
+vi demo_nginx.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+    tier: test
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+
+# Create and display PODs
+kubectl create -f nginx-pod.yaml
+kubectl get pod
+kubectl get pod -o wide
+kubectl get pod nginx-pod -o yaml
+kubectl describe pod nginx-pod
+
+kubelet monitor the pods containers are running or not if not create one
+
+
+
+kubeadm token create --print-join-command // to find the token later
+ 
+
+
